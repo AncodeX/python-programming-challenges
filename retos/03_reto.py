@@ -32,6 +32,17 @@ def password_generator(length: int, with_capital: bool, with_numbers: bool, with
     return password
 
 
+def bool_data(text: str):
+    with_char = input(f"{text}\n").lower()
+    while with_char != "s" and with_char != "n":
+        with_char = input(f"{text}\n").lower()
+
+    if with_char == "s":
+        return True
+    elif with_char == "n":
+        return False
+
+
 def main():
     try:
         length = int(
@@ -42,32 +53,11 @@ def main():
     except Exception as e:
         return "ERROR: " + e.__str__()
 
-    with_capital_letters = input("Con letras mayusuculas (s/n): ").lower()
-    while with_capital_letters != "s" and with_capital_letters != "n":
-        with_capital_letters = input("Con letras mayusuculas (s/n): ").lower()
+    with_capital_letters = bool_data("Con letras mayusuculas (s/n)")
 
-    if with_capital_letters == "s":
-        with_capital_letters = True
-    elif with_capital_letters == "n":
-        with_capital_letters = False
+    with_numbers = bool_data("Con numeros (s/n)")
 
-    with_numbers = input("Con numeros (s/n): ").lower()
-    while with_numbers != "s" and with_numbers != "n":
-        with_numbers = input("Con numeros (s/n): ").lower()
-
-    if with_numbers == "s":
-        with_numbers = True
-    elif with_numbers == "n":
-        with_numbers = False
-
-    with_symbols = input("Con simbolos (s/n): ").lower()
-    while with_symbols != "s" and with_symbols != "n":
-        with_symbols = input("Con simbolos (s/n): ").lower()
-
-    if with_symbols == "s":
-        with_symbols = True
-    elif with_symbols == "n":
-        with_symbols = False
+    with_symbols = bool_data("Con simbolos (s/n)")
 
     password = password_generator(
         length, with_capital_letters, with_numbers, with_symbols)
